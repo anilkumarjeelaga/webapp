@@ -1,0 +1,13 @@
+<p>form-group works!</p>
+<form [formGroup]="profileFormGroup" (ngSubmit)="onSubmit()" action="">
+  <label for="">
+    firstName:
+    <input type="text" formControlName="firstName">
+  </label><br><br>
+  <label for="">
+    lastName:
+    <input type="text" formControlName="lastName">
+  </label><br><br>
+  <button type="submit()" [disabled]="!profileFormGroup.valid">submit</button>
+</form>
+<br><br>

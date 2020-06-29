@@ -1,0 +1,232 @@
+<p>reactive-form-validation works!</p>
+<div class="container fundamentals-form">
+  <form action="" [formGroup]="heroFormGroup" (ngSubmit)="onSubmit()">
+    <!-- <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" class="form-control" formControlName="name">
+
+      <div
+        *ngIf="heroFormGroup.controls.name.invalid && (heroFormGroup.controls.name.dirty || heroFormGroup.controls.name.touched)"
+        class="alert alert-danger">
+        <div *ngIf="heroFormGroup.controls.name.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="heroFormGroup.controls.name.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="heroFormGroup.controls.name.errors.maxlength">
+          Name should not be more than 10 characters.
+        </div>
+      </div>
+      <pre>{{ heroFormGroup.controls.name.errors | json }}</pre>
+    </div> -->
+
+    <!-- name -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+
+      <div
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="name.errors.required" class="">
+          Name is required
+        </div>
+        <div *ngIf="name.errors.minlength">
+          Name must be atleast 4 characters long.
+        </div>
+        <div *ngIf="name.errors.maxlength">
+          Name should be not more than 10 characters
+        </div>
+      </div>
+    </div>
+
+    <!-- alterEgo -->
+    <div class="form-group">
+      <label for="alterEgo">alterEgo</label>
+      <input
+        type="text"
+        id="alterEgo"
+        class="form-control"
+        formControlName="alterEgo"
+      />
+    </div>
+    <!-- power -->
+    <div class="form-group">
+      <label for="power">Hero Power</label>
+      <select id="power" class="form-control" formControlName="power">
+        <option value="">Select hero power</option>
+        <option *ngFor="let p of powers" [value]="p">{{ p }}</option>
+      </select>
+
+      <div *ngIf="power.invalid && power.touched" class="alert alert-danger">
+        <div *ngIf="power.errors.required">Power is required.</div>
+      </div>
+    </div>
+    <!-- email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        class="form-control"
+        formControlName="email"
+      />
+
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="email.errors.required">
+          Email is required
+        </div>
+        <div *ngIf="email.errors.email">
+          please enter a valid email
+        </div>
+      </div>
+    </div>
+    <!--  secondary email-->
+    <div class="form-group">
+      <label for="secondaryEmail">Secondary Email</label>
+      <input
+        type="text"
+        class="form-control"
+        name="secondaryEmail"
+        id="secondaryEmail"
+        formControlName="secondaryEmail"
+      />
+      <div
+        *ngIf="
+          secondaryEmail.invalid &&
+          (secondaryEmail.dirty || secondaryEmail.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="secondaryEmail.errors?.pattern">
+          Please enter a valid email.
+        </div>
+      </div>
+    </div>
+
+    <!-- available -->
+    <div class="form-group">
+      <label for="">Available</label>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="yes"
+          formControlName="available"
+        />
+        <label for="" class="form-check-label">Yes</label>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="no"
+          formControlName="available"
+        />
+        <label for="" class="form-check-label">No</label>
+      </div>
+
+      <div
+        *ngIf="available.invalid && (available.dirty || available.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="available.errors.required">
+          please select availability
+        </div>
+      </div>
+    </div>
+
+    <!-- nickname -->
+    <div class="form-group">
+      <label for="">Nick Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nickname"
+        name="nickname"
+        formControlName="nickName"
+      />
+      <div
+        *ngIf="nickName.invalid && (nickName.dirty || nickName.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="nickName.errors.required">
+          Nick name is required
+        </div>
+        <div *ngIf="nickName.errors.forbiddenName">
+          {{ nickName.errors.forbiddenName.value }} is not allowed as nick name
+        </div>
+      </div>
+    </div>
+    <!-- username -->
+    <div class="form-group">
+      <label for="">user name</label>
+      <input type="text" class="form-control" formControlName="userName" />
+      <div *ngIf="userName.pending">Validating....</div>
+      <div
+        *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="userName.errors.required">
+          userName is required
+        </div>
+        <div *ngIf="userName.errors.uniqueUserName">
+          {{ userName.errors.uniqueUserName }} is already taken.please choose
+          another
+        </div>
+      </div>
+    </div>
+    <!-- vehicles -->
+
+    <div class="form-group">
+      <label>Vehicles</label>
+      <!--this is real one <div class="form-check" *ngFor="let vehicle of vehicles.controls; let i = index"></div> -->
+      <div class="form-check" *ngFor="let vehicle of vehicles; let i = index">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [formControl]="vehicle"
+        />
+        <label class="form-check-label">{{ vehiclesArr[i].label }}</label>
+      </div>
+
+      <div
+        *ngIf="vehicles.invalid && (vehicles.dirty || vehicles.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="vehicles.errors.required">
+          Please select atleast one vehicle.
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="heroFormGroup.invalid || heroFormGroup.pending"
+    >
+      Submit
+    </button>
+    &nbsp; &nbsp;
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="heroFormGroup.reset()"
+    >
+      Reset
+    </button>
+  </form>
+</div>

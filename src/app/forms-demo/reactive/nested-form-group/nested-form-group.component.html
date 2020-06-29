@@ -1,0 +1,40 @@
+<form action="" [formGroup]="profileFormGroup" (ngSubmit)="onSubmit()">
+  <label for="">
+    FirstName:
+    <input type="text" formControlName="firstName">
+  </label><br>
+  <label for="">
+    LastName:
+    <input type="text" formControlName="lastName">
+  </label><br>
+  <div formGroupName="address">
+    <h3>Address</h3>
+    <label for="">
+      street:
+      <input type="text" formControlName="street">
+    </label><br>
+    <label for="">
+      city:
+      <input type="text" formControlName="city">
+    </label><br>
+    <label for="">
+      state:
+      <input type="text" formControlName="state">
+    </label><br>
+    <label for="">
+      Zipcode:
+      <input type="text" formControlName="zip">
+    </label><br><br>
+  </div>
+  <button type="submit" [disabled]="!profileFormGroup.valid">submit</button>
+  <p>
+    <button (click)="updateFewProfileControls()">Patch profile</button>
+  </p>
+  <p>
+    <button (click)="updateAllProfileControls()">update few all profile patch</button>
+  </p>
+
+  <pre>{{ profileFormGroup.value | json }}</pre>
+  {{ profileFormGroup.valid }} <br>
+  {{ profileFormGroup.status }}
+</form>

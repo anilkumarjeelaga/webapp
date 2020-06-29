@@ -1,0 +1,29 @@
+.header-bg {
+  background-color: #9a73bd;
+}
+
+.navbar-nav li a {
+  color: #fff;
+  transition: 0.3s ease-in-out 0s;
+
+}
+
+.navbar-light a {
+  color: #fff;
+}
+
+.navbar-expand-lg {
+  justify-content: space-between;
+}
+
+button#dropdownBasic1 {
+  color: #fff;
+  border: none;
+  transition: 0.3s ease-in-out 0s;
+}
+
+button#dropdownBasic1:hover,
+.navbar-nav li a:hover {
+  background: #0c0c0c;
+
+}
